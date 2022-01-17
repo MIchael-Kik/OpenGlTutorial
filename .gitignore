@@ -6,7 +6,6 @@ bin-int
 
 Makefile
 **/Makefile
-vendor
 
 **.sh
 
