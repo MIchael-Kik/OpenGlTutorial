@@ -1,0 +1,13 @@
+bin
+bin-int
+
+**/bin
+**/bin-int
+
+Makefile
+**/Makefile
+vendor
+
+**.sh
+
+.vscode
