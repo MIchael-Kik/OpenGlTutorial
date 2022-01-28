@@ -16,7 +16,6 @@ workspace "OpenGl"
 outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
 include "dependencies/glfw"
-include "dependencies/glad"
 
 project "Application"
     location "Application"
@@ -26,6 +25,10 @@ project "Application"
     targetdir ("bin/" .. outputdir .. "/%{prj.name}")
     objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
 
+    defines {
+        "GLEW_STATIC"
+    }
+
     files {
         "%{prj.name}/src/**.h",
         "%{prj.name}/src/**.cpp"
@@ -33,13 +36,20 @@ project "Application"
     
     includedirs {
         "dependencies/glfw/include",
-        "dependencies/glad/include"
+        "dependencies/glew/include",
+    }
+
+    libdirs {
+        "dependencies/glew/lib/"
     }
 
     links {
         "GLFW",
-        "GLAD",
-        "GL"
+        "GLEW",
+        "GL",
+        "GLU",
+        "dl",
+        "pthread"
     }
 
     filter "configurations:Debug"
